@@ -89,8 +89,8 @@ export default {
     methods: {
         getCode() {
             // 模拟返回验证码图片
-            //this.codeUrl = ‘http://www.demodashi.com/ueditor/jsp/upload/image/20170802/1501642847473057707.jpeg’
-            //this.loginForm.uuid = ‘111’
+            //this.codeUrl = 'http://www.demodashi.com/ueditor/jsp/upload/image/20170802/1501642847473057707.jpeg'
+            //this.loginForm.uuid = '111'
 
         },
         getCookie() {

@@ -1,9 +1,10 @@
 import axios from "axios";
-import { Notification } from "element-ui";
+import { ElNotification } from "element-plus";
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: "http://localhost:8000",
+  // baseURL: "http://124.70.62.142:8081/",
+  baseURL: "/api",
   timeout: 10000, // 请求超时时间
 });
 
@@ -25,7 +26,7 @@ service.interceptors.response.use(
   (response) => {
     const code = response.status;
     if (code < 200 || code > 300) {
-      Notification.error({
+      ElNotification.error({
         title: response.message,
       });
       return Promise.reject("error");
@@ -34,7 +35,7 @@ service.interceptors.response.use(
     }
   },
   (error) => {
-    Notification.error({
+    ElNotification.error({
       title: "接口请求失败",
       duration: 5000,
     });
