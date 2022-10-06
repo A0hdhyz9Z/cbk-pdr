@@ -40,9 +40,9 @@
           <!-- <el-form-item label="验证码" prop="code">
             <el-input v-model="ruleForm.code" maxlength="6" />
           </el-form-item> -->
-          <el-form-item label="手机号" prop="phone">
+          <!-- <el-form-item label="手机号" prop="phone">
             <el-input v-model="ruleForm.phone" maxlength="11" />
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="密码" prop="pwd">
             <el-input v-model="ruleForm.pwd" type="password" />
           </el-form-item>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { getEmailCode, register } from '../utils/api'
+import {register } from '../utils/api'
 export default {
   data() {
     return {
@@ -110,23 +110,23 @@ export default {
           message: '请输入邮箱',
           trigger: 'blur'
         }],
-        phone: [
-          { required: true, message: '请输入手机号码', trigger: 'blur' },
-          {
-            validator: function (rule, value, callback) {
-              if (/^1[34578]\d{9}$/.test(value) === false) {
-                callback(new Error('请输入正确的手机号'))
-              } else {
-                callback()
-              }
-            }, trigger: 'blur'
-          }
-        ],
+        // phone: [
+        //   { required: true, message: '请输入手机号码', trigger: 'blur' },
+        //   {
+        //     validator: function (rule, value, callback) {
+        //       if (/^1[34578]\d{9}$/.test(value) === false) {
+        //         callback(new Error('请输入正确的手机号'))
+        //       } else {
+        //         callback()
+        //       }
+        //     }, trigger: 'blur'
+        //   }
+        // ],
         pwd: [{
           required: true,
           message: '创建密码',
           trigger: 'blur'
-        }, { pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/, message: '密码必须同时包含数字与字母,且长度为 8-20位' }],
+        }, { pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/, message: '密码必须同时包含数字与字母,且长度为 8-20位' }],
         cpwd: [{
           required: true,
           message: '确认密码',
@@ -226,7 +226,7 @@ export default {
             // code: this.ruleForm.code,
             password: this.ruleForm.pwd,
             email: this.ruleForm.email,
-            phone: this.ruleForm.phone,
+            //phone: this.ruleForm.phone,
             enabled: true
           }
 

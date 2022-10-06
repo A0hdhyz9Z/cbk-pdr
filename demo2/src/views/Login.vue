@@ -23,9 +23,6 @@
                     <img :src="codeUrl" @click="getCode" />
                 </div>
             </el-form-item>
-            <el-checkbox v-model="loginForm.rememberMe" style="margin: 0 0 25px 0">
-                记住我
-            </el-checkbox>
             <el-form-item style="width: 100%">
                 <el-button :loading="loading" size="medium" type="primary" style="width: 100%"
                     @click.native.prevent="handleLogin">
@@ -42,18 +39,15 @@
 
 <script>
 // 加密
-//import { encrypt } from '@/utils/rsaEncrypt'
-import Cookies from 'js-cookie'
+import { login } from '../utils/api'
 export default {
     name: 'Login',
     data() {
         return {
             codeUrl: '',
-            cookiePass: '',
             loginForm: {
                 username: '',
                 password: '',
-                rememberMe: false,
                 code: '',
                 uuid: ''
             },
@@ -79,12 +73,9 @@ export default {
         }
     },
     created() {
-        // 获取验证码
-        this.getCode()
-        // 获取用户名密码等Cookie
-        this.getCookie()
-        // token 过期提示
-        this.point()
+        // // 获取验证码
+        // this.getCode()
+
     },
     methods: {
         getCode() {
@@ -93,69 +84,44 @@ export default {
             //this.loginForm.uuid = '111'
 
         },
-        getCookie() {
-            const username = Cookies.get('username')
-            let password = Cookies.get('password')
-            const rememberMe = Cookies.get('rememberMe')
-            // 保存cookie里面的加密后的密码
-            this.cookiePass = password === undefined ? '' : password
-            password = password === undefined ? this.loginForm.password : password
-            this.loginForm = {
-                username: username === undefined ? this.loginForm.username : username,
-                password: password,
-                rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
-                code: ''
-            }
-        },
         handleLogin() {
             this.$refs.loginForm.validate((valid) => {
                 const user = {
                     username: this.loginForm.username,
                     password: this.loginForm.password,
-                    rememberMe: this.loginForm.rememberMe,
                     code: this.loginForm.code,
                     uuid: this.loginForm.uuid
                 }
-                if (user.password !== this.cookiePass) {
-                    user.password = encrypt(user.password)
-                }
                 if (valid) {
                     this.loading = true
-                    if (user.rememberMe) {
-                        Cookies.set('username', user.username, {
-                            expires: Config.passCookieExpires
-                        })
-                        Cookies.set('password', user.password, {
-                            expires: Config.passCookieExpires
-                        })
-                        Cookies.set('rememberMe', user.rememberMe, {
-                            expires: Config.passCookieExpires
-                        })
-                    } else {
-                        Cookies.remove('username')
-                        Cookies.remove('password')
-                        Cookies.remove('rememberMe')
-                    }
-                    // 模拟登录成功
-                    console.log('登录成功')
+                    //登录
+                    login(user).then(res => {
+                        if (res.code == 200) {
+                            this.$message({
+                                showClose: true,
+                                message: '登录成功',
+                                type: 'success'
+                            })
+                        } else {
+                            this.$message({
+                                showClose: true,
+                                message: '登录失败',
+                                type: 'success'
+                            })
+                        }
+                        setTimeout(() => {
+                            this.$router.push('/')
+                        }, 2000)
+                    }).catch(err => {
+                        console.log(err.response.data.message)
+                    })
+                    //console.log('登录成功')
                 } else {
                     console.log('error submit!!')
                     return false
                 }
             })
         },
-        point() {
-            const point = Cookies.get('point') !== undefined
-            if (point) {
-                this.$notify({
-                    title: '提示',
-                    message: '当前登录状态已过期，请重新登录！',
-                    type: 'warning',
-                    duration: 5000
-                })
-                Cookies.remove('point')
-            }
-        }
     }
 }
 </script>
