@@ -31,7 +31,7 @@
                 </el-button>
             </el-form-item>
             <el-form-item style="width: 100%">
-                <a href="/register" class="register">注册</a>
+                <router-link to="/register">注册</router-link>
             </el-form-item>
         </el-form>
     </div>
@@ -99,25 +99,27 @@ export default {
                         if (res.code == 200) {
                             this.$message({
                                 showClose: true,
-                                message: '登录成功',
+                                message: res.message,
                                 type: 'success'
                             })
                         } else {
                             this.$message({
                                 showClose: true,
-                                message: '登录失败',
-                                type: 'success'
+                                message: res.message,
+                                type: 'error'
                             })
                         }
-                        setTimeout(() => {
-                            this.$router.push('/')
-                        }, 2000)
+                        // setTimeout(() => {
+                        //     this.$router.push('/')
+                        // }, 2000)
                     }).catch(err => {
                         console.log(err.response.data.message)
                     })
                     //console.log('登录成功')
+                    this.loading = false
                 } else {
                     console.log('error submit!!')
+                    this.loading = false
                     return false
                 }
             })

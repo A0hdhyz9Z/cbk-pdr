@@ -5,9 +5,9 @@
         <el-avatar icon="el-icon-user-solid" shape="circle"></el-avatar>
         <span class="login">
           <em class="bold">已有账号？</em>
-          <a href="/login">
+          <router-link to="/login">
             <el-button type="primary" size="small">登录</el-button>
-          </a>
+          </router-link>
         </span>
       </header>
     </article>
@@ -37,12 +37,6 @@
             <!-- <el-button :loading="codeLoading" :disabled="isDisable" size="mini" round @click="sendMsg">发送验证码</el-button> -->
             <span class="status">{{ statusMsg }}</span>
           </el-form-item>
-          <!-- <el-form-item label="验证码" prop="code">
-            <el-input v-model="ruleForm.code" maxlength="6" />
-          </el-form-item> -->
-          <!-- <el-form-item label="手机号" prop="phone">
-            <el-input v-model="ruleForm.phone" maxlength="11" />
-          </el-form-item> -->
           <el-form-item label="密码" prop="pwd">
             <el-input v-model="ruleForm.pwd" type="password" />
           </el-form-item>
@@ -62,7 +56,7 @@
 </template>
 
 <script>
-import {register } from '../utils/api'
+import { register } from '../utils/api'
 export default {
   data() {
     return {
@@ -231,14 +225,22 @@ export default {
           }
 
           register(user).then(res => {
-            this.$message({
-              showClose: true,
-              message: '注册成功',
-              type: 'success'
-            })
-            setTimeout(() => {
-              this.$router.push('/')
-            }, 2000)
+            if (res.code == 200) {
+              this.$message({
+                showClose: true,
+                message: res.message,
+                type: 'success'
+              })
+              setTimeout(() => {
+                this.$router.push('/')
+              }, 2000)
+            } else {
+              this.$message({
+                showClose: true,
+                message: res.message,
+                type: 'error'
+              })
+            }
           }).catch(err => {
             console.log(err.response.data.message)
           })
