@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import team.cbk.demo.pojo.User;
 
 import java.util.List;
+// map
 
 @Mapper
 public interface UserMapper {
