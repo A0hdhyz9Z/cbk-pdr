@@ -53,8 +53,16 @@
   ;
   
   }
-  .main{
-  
+  .common-layout{
+    background: #1f5dad;
+    box-shadow:
+    8.7px 9.2px 2.6px rgba(0, 0, 0, 0.023),
+    18.5px 19.6px 6.3px rgba(0, 0, 0, 0.025),
+    29.9px 31.7px 11.9px rgba(0, 0, 0, 0.024),
+    44.2px 46.8px 21.2px rgba(0, 0, 0, 0.023),
+    64.1px 67.9px 39.7px rgba(0, 0, 0, 0.028),
+    100px 106px 95px rgba(0, 0, 0, 0.07)
+  ;
   }
   }
   

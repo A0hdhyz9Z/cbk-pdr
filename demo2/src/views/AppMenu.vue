@@ -32,16 +32,16 @@
           <el-menu-item index="1-4-1">item one</el-menu-item>
         </el-sub-menu>
       </el-sub-menu> -->
-      <el-menu-item index="2">
+      <el-menu-item index="/Order">
         <el-icon><DocumentAdd /></el-icon>
         <template #title>提交预测订单</template>
       </el-menu-item>
 
-      <el-menu-item index="3">
+      <el-menu-item index="/History">
         <el-icon><Files /></el-icon>
         <template #title>查看历史订单</template>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="/">
         <el-icon><User /></el-icon>
         <template #title>退出登录</template>
       </el-menu-item>

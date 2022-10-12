@@ -5,6 +5,8 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
 import AppLayout from '../views/AppLayout.vue'
+import Order from '../views/Order.vue'
+import History from '../views/History.vue'
 
 
 const routes = [
@@ -12,8 +14,20 @@ const routes = [
   {path:'/Login',component:Login},
   {path:'/Register',component:Register},
   {path: '/path(.*)',component:NotFound},
-  {path: '/AppLayout',component:AppLayout}
-
+  {path: '/AppLayout',
+  component:AppLayout,
+  children: [
+    {
+      path: '/Order',
+      name: '/Order',
+      component: Order,
+    },
+    {
+      path: '/History',
+      name: '/History',
+      component: History,
+    },
+  ],}
 ]
 
 const router = createRouter({
