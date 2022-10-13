@@ -1,5 +1,9 @@
 package team.cbk.demo.controller;
 
+import team.cbk.demo.pojo.RespBean;
+import team.cbk.demo.pojo.User;
+import team.cbk.demo.service.UserService;
+
 public class UserController {
 
     private UserService userService;
@@ -16,8 +20,8 @@ public class UserController {
         if (name.length() <6 || name.length() > 16){
             return RespBean.error("用户名的长度为6-16个字符");
         }
-        if (password1.length()<6 || password1.length()>24){
-            return RespBean.error("密码长度位6-24个字符");
+        if (password1.length()<6 || password1.length()>25){
+            return RespBean.error("密码长度位6-25个字符");
         }
         if (!EmailCheckUtils.isEmail(mail)){
             return RespBean.error("邮箱格式错误");
