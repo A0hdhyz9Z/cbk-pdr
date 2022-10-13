@@ -13,13 +13,11 @@ import '../node_modules/element-plus/dist/index.css'
 const app = createApp(App)
 
 
-
 app.use(router)
-
 app.use(ElementPlus)
-app.mount('#app')
-
 //  统一注册el-icon图标
 for(let iconName in ElIconModules){
     app.component(iconName,ElIconModules[iconName])
 }
+app.mount('#app')
+

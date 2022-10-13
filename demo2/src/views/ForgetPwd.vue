@@ -1,18 +1,23 @@
 <template>
-    <FindPwdForm class="form" />
+    <div class="forget-wrapper">
+        <FindPwdForm class="form" />
+        </div>
 </template>
 <script>
-export default {};
+import FindPwdForm from '../components/form/FindPwdForm.vue'
+export default {
+    components:{
+        FindPwdForm
+    }
+};
 </script>
 <style scoped>
-.form {
+.forget-wrapper {
     height: 300px;
-    width: 500px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    position: absolute;
-    top: 200px;
+    justify-content: center;
+    align-content: center;
+    margin-top: 200px;
 }
 
 </style>

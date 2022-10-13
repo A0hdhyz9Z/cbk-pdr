@@ -2,33 +2,42 @@
     <div class="login">
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" label-position="left" label-width="0px"
             class="login-form">
-            <h3 class="title">欢迎使用</h3>
+            <h3 class="title">欢迎使用软件缺陷预测系统</h3>
             <el-form-item prop="username">
-                <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="请输入用户名" prefix-icon="User">
+                <el-input v-model="loginForm.username" type="text" auto-complete="on" placeholder="请输入用户名"
+                    prefix-icon="User">
                 </el-input>
             </el-form-item>
-            <el-form-item prop="password">
-                <el-input v-model="loginForm.password" type="password" auto-complete="off" placeholder="密码" prefix-icon="Lock"
-                    @keyup.enter.native="handleLogin">
+            <el-form-item prop="password" style="margin-top:30px">
+                <el-input v-model="loginForm.password" type="password" auto-complete="off" placeholder="密码"
+                    prefix-icon="Lock" @keyup.enter.native="handleLogin">
                 </el-input>
             </el-form-item>
             <el-form-item prop="code">
-                <el-input v-model="loginForm.code" auto-complete="off" placeholder="验证码" style="width: 63%" prefix-icon="Lock"
-                    @keyup.enter.native="handleLogin">
+                <el-input v-model="loginForm.code" auto-complete="off" placeholder="验证码" style="width: 63%"
+                    prefix-icon="Lock" @keyup.enter.native="handleLogin">
                 </el-input>
                 <div class="login-code">
-                    <PicCode :width="200" :height="60" v-model:Code="Code" />
+                    <PicCode :width="120" :height="40" v-model:Code="Code" />
                 </div>
             </el-form-item>
+            <el-button :loading="loading" size="medium" type="primary" style="width: 40%;margin-top: -10px;"
+                @click.native.prevent="handleLogin">
+                <span v-if="!loading">登 录</span>
+                <span v-else>登 录 中...</span>
+            </el-button>
+            <router-link to="/register">
+                <el-button class="reg_btn" size="medium">
+                    注册</el-button>
+            </router-link>
+            <!-- <el-form-item style="width: 100%">
+                <router-link to="/register">注册</router-link>
+            </el-form-item> -->
             <el-form-item style="width: 100%">
-                <el-button :loading="loading" size="medium" type="primary" style="width: 100%"
-                    @click.native.prevent="handleLogin">
-                    <span v-if="!loading">登 录</span>
-                    <span v-else>登 录 中...</span>
-                </el-button>
+                <router-link to="/forgetPwd">忘记密码？</router-link>
             </el-form-item>
             <el-form-item style="width: 100%">
-                <router-link to="/register">注册</router-link>
+                <!-- <v-verify ></v-verify> -->
             </el-form-item>
         </el-form>
     </div>
@@ -38,9 +47,13 @@
 // 加密
 import { login } from '../../utils/api'
 import PicCode from "@/components/PicCode/PicCode.vue";
+import slideVerify from "../form/slideForm.vue"
 export default {
     name: 'Login',
-	components: { PicCode },
+    components: {
+        PicCode,
+        'v-verify': slideVerify
+    },
     data() {
         return {
             codeUrl: '',
@@ -60,7 +73,8 @@ export default {
                 code: [{ required: true, trigger: 'change', message: '验证码不能为空' }]
             },
             loading: false,
-            redirect: undefined
+            redirect: undefined,
+            Code: ''
         }
     },
     watch: {
@@ -71,18 +85,7 @@ export default {
             immediate: true
         }
     },
-    created() {
-        // // 获取验证码
-        // this.getCode()
-
-    },
     methods: {
-        getCode() {
-            // 模拟返回验证码图片
-            //this.codeUrl = 'http://www.demodashi.com/ueditor/jsp/upload/image/20170802/1501642847473057707.jpeg'
-            //this.loginForm.uuid = '111'
-
-        },
         handleLogin() {
             this.$refs.loginForm.validate((valid) => {
                 const user = {
@@ -91,31 +94,40 @@ export default {
                     code: this.loginForm.code,
                     uuid: this.loginForm.uuid
                 }
+                console.log(valid)
                 if (valid) {
-                    this.loading = true
-                    //登录
-                    login(user).then(res => {
-                        if (res.code == 200) {
-                            this.$message({
-                                showClose: true,
-                                message: res.message,
-                                type: 'success'
-                            })
-                        } else {
-                            this.$message({
-                                showClose: true,
-                                message: res.message,
-                                type: 'error'
-                            })
-                        }
-                        // setTimeout(() => {
-                        //     this.$router.push('/')
-                        // }, 2000)
-                    }).catch(err => {
-                        console.log(err.response.data.message)
-                    })
-                    //console.log('登录成功')
-                    this.loading = false
+                    if (user.code == this.Code) {
+                        this.loading = true
+                        //登录
+                        login(user).then(res => {
+                            if (res.code == 200) {
+                                this.$message({
+                                    showClose: true,
+                                    message: res.message,
+                                    type: 'success'
+                                })
+                            } else {
+                                this.$message({
+                                    showClose: true,
+                                    message: res.message,
+                                    type: 'error'
+                                })
+                            }
+                            // setTimeout(() => {
+                            //     this.$router.push('/')
+                            // }, 2000)
+                        }).catch(err => {
+                            console.log(err.response.data.message)
+                        })
+                        //console.log('登录成功')
+                        this.loading = false
+                    } else {
+                        this.$message({
+                            showClose: true,
+                            message: '验证码错误',
+                            type: 'error'
+                        })
+                    }
                 } else {
                     console.log('error submit!!')
                     this.loading = false
@@ -170,9 +182,11 @@ export default {
 }
 
 .login-code {
-    width: 33%;
+    width: 30%;
     display: inline-block;
-    height: 38px;
+    height: 60px;
+    margin-left: 8px;
+    margin-top: 15px;
 
     //float: right;
     img {
@@ -193,6 +207,23 @@ a {
     outline: none;
     cursor: pointer;
     transition: color 0.3s;
+}
+
+.reg_btn {
+    color: #fff;
+    background-color: rgb(21, 47, 72);
+    border-color: rgb(21, 47, 72);
+    width: 40%;
+    text-align: center;
+    margin-left: 60px;
+    margin-top: -10px;
+}
+
+.reg_btn:hover,
+.reg_btn:focus {
+    background: var(--el-button-hover-color);
+    border-color: var(--el-button-hover-color);
+    color: var(--el-button-font-color);
 }
 </style>
 

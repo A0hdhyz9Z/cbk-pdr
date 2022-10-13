@@ -5,7 +5,7 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 
 const router = useRouter();
-const store = useAuthStore();
+// const store = useAuthStore();
 
 const formRef = ref<FormInstance>();
 // 表单数据
