@@ -1,19 +1,20 @@
 <template>
     <div class="forget-wrapper">
-        <FindPwdForm class="form" />
+        <FindPasswordForm class="form" />
         </div>
 </template>
 <script>
-import FindPwdForm from '../components/form/FindPwdForm.vue'
+import FindPasswordForm from '../components/form/FindPasswordForm.vue'
+
 export default {
     components:{
-        FindPwdForm
+        FindPasswordForm
     }
 };
 </script>
 <style scoped>
 .forget-wrapper {
-    height: 300px;
+    height: 350px;
     display: flex;
     justify-content: center;
     align-content: center;

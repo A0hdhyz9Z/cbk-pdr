@@ -18,3 +18,30 @@ export function login(user) {
     method: 'post',
   })
 }
+
+//发送验证码
+export function sendCode(data) {
+  console.log('login_api')
+  return request({
+    url: '/user/forget/'+data.username+'/'+data.email,
+    method: 'post',
+  })
+}
+
+//核对验证码
+export function checkCode(data) {
+  console.log('login_api')
+  return request({
+    url: '/user/verify/'+data.username+'/'+data.code,
+    method: 'post',
+  })
+}
+
+//修改密码
+export function modifyPwd(data) {
+  console.log('login_api')
+  return request({
+    url: '/user/update/'+data.password+'/'+data.password,
+    method: 'put',
+  })
+}
