@@ -1,13 +1,28 @@
 package team.cbk.demo.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import team.cbk.demo.pojo.RespBean;
 import team.cbk.demo.pojo.User;
 import team.cbk.demo.service.UserService;
+import team.cbk.demo.utils.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
+
+@RestController
+@Api(value="用户controller",tags={"用户操作接口"})
 public class UserController {
 
+    @Autowired
     private UserService userService;
 
+    @ApiOperation(value="用户注册",notes="输入用户名，密码，确认密码，邮箱地址,网址格式为 /user/register/{name}/{password1}/{password2}/{mail}")
+    @PostMapping("/user/register/{name}/{password1}/{password2}/{mail}")
     public RespBean register(@PathVariable("name") String name, @PathVariable("password1") String password1,
                              @PathVariable("password2") String password2, @PathVariable("mail") String mail){
 
@@ -20,8 +35,8 @@ public class UserController {
         if (name.length() <6 || name.length() > 16){
             return RespBean.error("用户名的长度为6-16个字符");
         }
-        if (password1.length()<6 || password1.length()>25){
-            return RespBean.error("密码长度位6-25个字符");
+        if (password1.length()<6 || password1.length()>24){
+            return RespBean.error("密码长度位6-24个字符");
         }
         if (!EmailCheckUtils.isEmail(mail)){
             return RespBean.error("邮箱格式错误");
@@ -43,8 +58,9 @@ public class UserController {
         }
         return RespBean.success("注册成功，请激活账户");
     }
+    @ApiOperation(value="激活账户",notes="无需输入，均由系统自动生成，网址格式为 /user/active?username={用户名}&c={激活码}")
+    @GetMapping("/user/active")
     public RespBean active(@ApiParam("用户名") @PathParam("username") String username,@ApiParam("激活码") @PathParam("c") String c){
-
         String code = Base64Utils.decode(c);
         int i = userService.activeUser(code,username);
         if (i ==Constants.ACTIVE_FAIL) {
@@ -56,6 +72,8 @@ public class UserController {
         }
     }
 
+    @ApiOperation(value="用户登陆",notes="需要账户名和密码 网址格式为 /user/login/{username}/{password}")
+    @PostMapping("/user/login/{username}/{password}")
     public RespBean login(HttpServletRequest req,@PathVariable("username") String userName,@PathVariable("password") String password){
         if (userName == null){
             return RespBean.error("请输入用户名");
@@ -78,6 +96,8 @@ public class UserController {
         return RespBean.success("登陆成功",user);
     }
 
+    @ApiOperation(value="忘记密码，获得邮箱激活码",notes="需要账户名和邮箱地址 网址格式为 /user/forget/{username}/{mail}")
+    @PostMapping("/user/forget/{username}/{mail}")
     public RespBean forgetPassword(@PathVariable("username") String userName,@PathVariable("mail") String mail){
         if (userName == null){
             return RespBean.error("请输入用户名");
@@ -97,6 +117,8 @@ public class UserController {
             return RespBean.success("验证码已发送到用户邮箱");
     }
 
+    @ApiOperation(value="核对验证码",notes="需要账户名和邮箱验证码 网址格式为 /user/verify/{username/{verification}")
+    @PostMapping("/user/verify/{username}/{verification}")
     public RespBean verify(HttpServletRequest req,@PathVariable("username") String username,@PathVariable("verification") String verification){
         if (username==null){
             return RespBean.error("请输入用户名");
@@ -113,6 +135,8 @@ public class UserController {
         return RespBean.success("验证码正确");
     }
 
+    @ApiOperation(value="修改密码",notes="必须先通过验证邮箱或用户已登陆才可进行修改密码 需要新密码和确认新密码两个参数 网址格式为 /user/update/{password1}/{password2}")
+    @PutMapping("/user/update/{password1}/{password2}")
     public RespBean updatePassword(HttpServletRequest req,@PathVariable("password1") String password1,@PathVariable("password2") String password2){
         HttpSession session = req.getSession();
         String name;
@@ -129,11 +153,15 @@ public class UserController {
             return RespBean.error("密码不一致");
         }
         if (password1.length()<6 || password1.length()>24){
-            return RespBean.error("密码长度位6-24个字符");
+            return RespBean.error("密码长度为6-24个字符");
         }
         int i = userService.updataPassword(name, MD5Utils.md5(password1));
         if (i==Constants.UPDATE_PASSWORD_FAIL){
             return RespBean.error("密码修改失败，未知原因");
+        }
+        if (loginUser != null){
+            //重新登陆
+            session.removeAttribute("loginUser");
         }
         return RespBean.success("密码修改成功");
     }
