@@ -145,6 +145,9 @@ export default {
                                 message: res.message,
                                 type: 'success'
                             })
+                            setTimeout(() => {
+                                this.$router.push('/login')
+                            }, 2000)
                         }
                         //修改失败
                         else {
@@ -157,7 +160,7 @@ export default {
                     }).catch(err => {
                         console.log(err)
                     })
-                //验证码验证失败
+                    //验证码验证失败
                 } else {
                     this.$message({
                         showClose: true,

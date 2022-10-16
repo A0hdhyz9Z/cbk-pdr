@@ -340,7 +340,7 @@ export default {
 							})
 						}
 					}).catch(err => {
-						console.log(err.response.data.message)
+						console.log(err.response)
 					})
 				}
 			})

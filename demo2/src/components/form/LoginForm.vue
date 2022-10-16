@@ -106,6 +106,7 @@ export default {
                                     message: res.message,
                                     type: 'success'
                                 })
+                                this.$router.push('/Order')
                             } else {
                                 this.$message({
                                     showClose: true,
@@ -117,7 +118,7 @@ export default {
                             //     this.$router.push('/')
                             // }, 2000)
                         }).catch(err => {
-                            console.log(err.response.data.message)
+                            console.log(err.response)
                         })
                         //console.log('登录成功')
                         this.loading = false
