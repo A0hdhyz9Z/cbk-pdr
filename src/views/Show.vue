@@ -2,24 +2,24 @@
     <div class="title">
         <span style="margin: auto">结 果 图 表 展 示</span>
     </div>
-    
+
     <div class="message">
         <span style="margin: auto">订单编号</span>
     </div>
     <div>
-        <div id="acc" style="width: 600px; height: 300px;float:left;"></div>
+        <div id="acc" style="width: 550px; height: 280px;float:left;"></div>
     </div>
 
     <div>
-        <div id="f1Score" style="width: 600px; height: 300px;float:right;"></div>
+        <div id="f1Score" style="width: 550px; height: 280px;float:right;"></div>
     </div>
 
     <div>
-        <div id="precission" style="width: 600px; height: 300px;float:left;"></div>
+        <div id="precission" style="width: 550px; height: 280px;float:left;"></div>
     </div>
 
     <div>
-        <div id="recall" style="width: 600px; height: 300px;float:right;"></div>
+        <div id="recall" style="width: 550px; height: 280px;float:right;"></div>
     </div>
 </template>
 <script setup>
@@ -38,6 +38,20 @@ const echartInit = () => {
         title: {
             text: 'ACC'
         },
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
         legend: {
             data: ['算法一', '算法二', '算法三']
         },
@@ -47,19 +61,19 @@ const echartInit = () => {
         yAxis: {},
         series: [
             {
-                name:'算法一',
+                name: '算法一',
                 data: [10, 22, 28, 43, 49, 89, 45, 67, 15, 20],
                 type: 'line',
                 stack: 'x'
             },
             {
-                name:'算法二',
+                name: '算法二',
                 data: [5, 4, 3, 5, 10, 5, 16, 24, 36, 49],
                 type: 'line',
                 stack: 'x'
             },
             {
-                name:'算法三',
+                name: '算法三',
                 data: [45, 63, 26, 45, 46, 31, 25, 14, 54, 47],
                 type: 'line',
                 stack: 'x'
@@ -76,6 +90,20 @@ const echartInit = () => {
         title: {
             text: 'f1Score'
         },
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
         legend: {
             data: ['算法一', '算法二', '算法三']
         },
@@ -85,19 +113,19 @@ const echartInit = () => {
         yAxis: {},
         series: [
             {
-                name:'算法一',
+                name: '算法一',
                 data: [10, 22, 28, 43, 49, 89, 45, 67, 15, 20],
                 type: 'line',
                 stack: 'x'
             },
             {
-                name:'算法二',
+                name: '算法二',
                 data: [5, 4, 3, 5, 10, 5, 16, 24, 36, 49],
                 type: 'line',
                 stack: 'x'
             },
             {
-                name:'算法三',
+                name: '算法三',
                 data: [45, 63, 26, 45, 46, 31, 25, 14, 54, 47],
                 type: 'line',
                 stack: 'x'
@@ -113,6 +141,20 @@ const echartInit = () => {
         title: {
             text: 'precission'
         },
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
         legend: {
             data: ['算法一', '算法二', '算法三']
         },
@@ -122,19 +164,19 @@ const echartInit = () => {
         yAxis: {},
         series: [
             {
-                name:'算法一',
+                name: '算法一',
                 data: [10, 22, 28, 43, 49, 89, 45, 67, 15, 20],
                 type: 'line',
                 stack: 'x'
             },
             {
-                name:'算法二',
+                name: '算法二',
                 data: [5, 4, 3, 5, 10, 5, 16, 24, 36, 49],
                 type: 'line',
                 stack: 'x'
             },
             {
-                name:'算法三',
+                name: '算法三',
                 data: [45, 63, 26, 45, 46, 31, 25, 14, 54, 47],
                 type: 'line',
                 stack: 'x'
@@ -150,6 +192,20 @@ const echartInit = () => {
         title: {
             text: 'recall'
         },
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
         legend: {
             data: ['算法一', '算法二', '算法三']
         },
@@ -159,19 +215,19 @@ const echartInit = () => {
         yAxis: {},
         series: [
             {
-                name:'算法一',
+                name: '算法一',
                 data: [10, 22, 28, 43, 49, 89, 45, 67, 15, 20],
                 type: 'line',
                 stack: 'x'
             },
             {
-                name:'算法二',
+                name: '算法二',
                 data: [5, 4, 3, 5, 10, 5, 16, 24, 36, 49],
                 type: 'line',
                 stack: 'x'
             },
             {
-                name:'算法三',
+                name: '算法三',
                 data: [45, 63, 26, 45, 46, 31, 25, 14, 54, 47],
                 type: 'line',
                 stack: 'x'
@@ -191,7 +247,7 @@ onMounted(() => {
 </script>
 
 <style>
-    .title {
+.title {
     color: #1b3366;
     display: flex;
     width: 100%;
@@ -201,5 +257,4 @@ onMounted(() => {
     /* 控制元素水平居中， 居左居右分别为left,right */
     margin-top: 10px;
 }
-
 </style>
