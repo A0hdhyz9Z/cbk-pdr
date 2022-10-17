@@ -2,6 +2,10 @@
     <div class="title">
         <span style="margin: auto">结 果 图 表 展 示</span>
     </div>
+    
+    <div class="message">
+        <span style="margin: auto">订单编号</span>
+    </div>
     <div>
         <div id="acc" style="width: 600px; height: 300px;float:left;"></div>
     </div>
