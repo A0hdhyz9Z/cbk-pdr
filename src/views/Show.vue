@@ -3,9 +3,22 @@
         <span style="margin: auto">结 果 图 表 展 示</span>
     </div>
 
-    <div class="message">
-        <span style="margin: auto">订单编号</span>
-    </div>
+    <el-card class="box-card" style="margin-bottom: 50px;width: 1200px;">
+        <el-form-item label="订单编号:" style="width:550px;height: 30px;display: inline-block;">
+            <!-- <p>{{predictForm.id}}</p> -->
+        </el-form-item>
+        <el-form-item label="订单名称:" style="width:550px;height: 30px;display: inline-block;">
+            <!-- <p>{{predictForm.id}}</p> -->
+        </el-form-item>
+        <el-form-item label="订单描述:" style="width:550px;height: 30px;display: inline-block;">
+            <!-- <p>{{predictForm.id}}</p> -->
+        </el-form-item>
+        <el-form-item label="订单数据集:" style="width:550px;height: 30px;display: inline-block;">
+            <!-- <p>{{predictForm.id}}</p> -->
+        </el-form-item>
+    </el-card>
+
+
     <div>
         <div id="acc" style="width: 550px; height: 280px;float:left;"></div>
     </div>
@@ -14,14 +27,42 @@
         <div id="f1Score" style="width: 550px; height: 280px;float:right;"></div>
     </div>
 
+    <el-form-item label="根据不同算法10次评价指标ACC数据的平均值，算法效果最好的是：" style="width:550px;float:left;">
+        <!-- <p>{{predictForm.id}}</p> -->
+    </el-form-item>
+
+    <el-form-item label="根据不同算法10次评价指标f1Score数据的平均值，算法效果最好的是：" style="width:550px;float:right;">
+        <!-- <p>{{predictForm.id}}</p> -->
+    </el-form-item>
+
+
     <div>
-        <div id="precission" style="width: 550px; height: 280px;float:left;"></div>
+        <div id="precission" style="width: 550px; height: 280px;float:left;margin-top: 30px;"></div>
     </div>
 
     <div>
-        <div id="recall" style="width: 550px; height: 280px;float:right;"></div>
+        <div id="recall" style="width: 550px; height: 280px;float:right;margin-top: 30px;"></div>
     </div>
+
+    <el-form-item label="根据不同算法10次评价指标precission数据的平均值，算法效果最好的是：" style="width:550px;float:left;">
+        <!-- <p>{{predictForm.id}}</p> -->
+    </el-form-item>
+
+    <el-form-item label="根据不同算法10次评价指标recall数据的平均值，算法效果最好的是：" style="width:550px;float:right;">
+        <!-- <p>{{predictForm.id}}</p> -->
+    </el-form-item>
+
+
+    <el-card class="box-card" style="margin-bottom: 50px;width: 1000px;margin: auto;font-size: 20px;">
+        <el-form-item label="综上，根据不同算法四种评价指标的平均值，算法效果最好的是：" style="width:700px;height: 30px;margin: auto;">
+            <!-- <p>{{predictForm.id}}</p> -->
+        </el-form-item>
+    </el-card>
+
+
 </template>
+
+
 <script setup>
 //引入echarts
 import * as echarts from "echarts";
