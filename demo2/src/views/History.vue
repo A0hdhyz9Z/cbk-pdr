@@ -13,7 +13,7 @@
       <el-table-column label="操作" width="180" fixed="right">
         <template #default="scope">
           <el-button size="small" @click="handlePredict(scope.row.id)">预测</el-button>
-          <el-button size="small" @click="handleShow(scope.row.id)">展示</el-button>
+          <el-button size="small" @click="handleShow(scope.row)">展示</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -121,10 +121,11 @@ export default {
       this.uploadFiles = '' //清空之前的选择
       this.dialogFormVisible = true
     },
-    handleShow(id) {
+    handleShow(row) {
       //console.log(id)
-      this.showId=id
-      this.dialogChartsVisible = true
+      //this.showId=id
+      this.$router.push('/Show/'+row.id+'/'+row.orderName+'/'+row.orderDescription+'/'+row.orderDataSet+'/'+row.orderAlg)
+      //this.dialogChartsVisible = true
     },
 
     //查询历史记录列表

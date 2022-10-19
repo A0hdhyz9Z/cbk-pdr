@@ -8,6 +8,8 @@ import ForgetPwd from "../views/ForgetPwd.vue";
 import AppLayout from "../views/AppLayout.vue";
 import Order from "../views/Order.vue";
 import History from "../views/History.vue";
+import Show from "../views/Show.vue";
+
 
 const routes = [
   { path: "/", component: Home },
@@ -28,6 +30,11 @@ const routes = [
         path: "/History",
         name: "/History",
         component: History,
+      },
+      {
+        path: "/Show/:id/:name/:description/:dataSet/:alg",
+        name: "/Show",
+        component: Show,
       },
     ],
   },

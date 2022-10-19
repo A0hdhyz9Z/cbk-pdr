@@ -75,10 +75,10 @@ export function selectAll() {
 }
 
 //SelectById（展示图表）
-export function selectById(data) {
+export function selectById(id) {
   console.log('selectById_api')
   return request({
-    url: '/order/detail/'+data.orderid,
+    url: '/order/detail/'+id,
     method: 'post',
   })
 }
