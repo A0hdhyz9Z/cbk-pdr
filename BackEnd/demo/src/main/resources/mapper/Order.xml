@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.cbk.demo.mapper.OrderMapper">
+    <select id="selectcountTempRecordByUserName" resultType="int">
+        select count(*) from orders where userName=#{username} and orderName="temp";
+    </select>
+
+    <insert id="insertTempRecordByUserName" parameterType="String">
+        insert into orders(userName,orderName) values(#{username},"temp");
+    </insert>
+
+    <select id="selectTempOrderIdByUserName" resultType="int">
+        select orderId from orders where userName=#{username} and orderName="temp";
+    </select>
+
+    <update id="updateTempRecordOrderAddressByUserName" parameterType="String">
+        update orders set orderDataAddress=#{address} where userName=#{username} and orderName="temp";
+    </update>
+
+    <update id="updateTempRecordOrderToCompleteOrderByOrder" parameterType="Order">
+        update orders set orderTime=#{order.orderTime},orderName=#{order.orderName},orderDescription=#{order.orderDescription},orderData=#{order.orderData},orderStatus=#{order.orderStatus},orderAlg=#{order.orderAlg},orderOnline=#{order.orderOnline} where userName=#{order.userName} and orderName="temp";
+    </update>
+
+    <insert id="insertOrderByOrder" parameterType="Order">
+        insert into orders(orderTime,userName,orderName,orderDescription,orderData,orderDataAddress,orderStatus,orderAlg,orderOnline) values(#{order.orderTime},#{order.userName},#{order.orderName},#{order.orderDescription},#{order.orderData},#{order.orderDataAddress},#{order.orderStatus},#{order.orderAlg},#{order.orderOnline});
+    </insert>
+
+    <select id="selectOrderIdByOrder" parameterType="Order" resultType="int">
+        select max(orderId) from orders where userName=#{order.userName} and orderName=#{order.orderName};
+    </select>
+
+    <select id="selectAllOrderByOrderStatus" resultType="Order">
+        select * from orders where orderStatus=0;
+    </select>
+
+    <update id="updataOrderStatus" parameterType="integer">
+        update orders set orderStatus = 1 where orderId=#{id};
+    </update>
+
+    <select id="selectAllOrdersByUserName" resultType="Order">
+        select * from orders where userName = #{username};
+    </select>
+
+    <select id="selectOrderDataAddress" resultType="String">
+        select orderDataAddress from orders where orderId = #{order.orderId};
+    </select>
+
+    <select id="selectScoreByOrderId" resultType="score">
+        select accuracy1,accuracy2,accuracy3,accuracy4,accuracy5,accuracy6,accuracy7,accuracy8,accuracy9,accuracy10,
+               precission1,precission2,precission3,precission4,precission5,precission6,precission7,precission8,precission9,precission10,
+               recall1,recall2,recall3,recall4,recall5,recall6,recall7,recall8,recall9,recall10,
+               f1Score1,f1Score2,f1Score3,f1Score4,f1Score5,f1Score6,f1Score7,f1Score8,f1Score9,f1Score10,accuracy.id
+        from accuracy,precission,recall,f1score where AorderId=#{id} and accuracy.id=precission.id and recall.id=f1score.id and accuracy.id=recall.id
+    </select>
+</mapper>

@@ -1,7 +1,4 @@
-# 专业团队cbk-pdr
-课程小项目
-
-# demo0
+# demo2
 
 This template should help get you started developing with Vue 3 in Vite.
 
