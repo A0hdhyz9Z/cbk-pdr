@@ -29,69 +29,16 @@ public class UserController {
         }
 
         User user = new User(name, password1, mail, null, null,null);
-        user.setUserStatus(Constants.USER_NOT_ACTIVE);//默认未被激活
-        user.setUserCode(RandomUtils.createActive());//邮箱激活代码
-        user.setUserPassword(MD5Utils.md5(user.getUserPassword()));//处理密码为MD5格式存储
-
-        int i =userService.registerUser(user);
-        if (i==0){
-            return RespBean.success("注册失败，请检查网络连接");
-        }
-        return RespBean.success("注册成功，请激活账户");
-    }
-    public RespBean active(@ApiParam("用户名") @PathParam("username") String username,@ApiParam("激活码") @PathParam("c") String c){
-
-        String code = Base64Utils.decode(c);
-        int i = userService.activeUser(code,username);
-        if (i ==Constants.ACTIVE_FAIL) {
-            return RespBean.error("无效激活码");
-        }else if (i== Constants.ACTIVE_SUCCESS){
-            return RespBean.success("激活成功",username);
-        }else {
-            return RespBean.error("重复激活",username);
-        }
-    }
-
-    public RespBean login(HttpServletRequest req,@PathVariable("username") String userName,@PathVariable("password") String password){
-        if (userName == null){
-            return RespBean.error("请输入用户名");
-        }
-        if (password==null){
+        us
             return RespBean.error("请输入密码");
         }
-        HttpSession session = req.getSession();
-        User user = userService.login(userName, password);
-
-        if (user == null){
-            return RespBean.error("账号或者密码错误");
-        }
-        if (user.getUserStatus().equals(Constants.USER_NOT_ACTIVE)){
-            return RespBean.error("账号未激活");
-        }
-
-        session.setAttribute("loginUser",user);
+        HttpSe
 
         return RespBean.success("登陆成功",user);
     }
 
-    public RespBean forgetPassword(@PathVariable("username") String userName,@PathVariable("mail") String mail){
-        if (userName == null){
-            return RespBean.error("请输入用户名");
-        }
-        if (mail==null){
-            return RespBean.error("请输入邮箱地址");
-        }
-        if (!EmailCheckUtils.isEmail(mail)){
             return RespBean.error("邮箱格式错误");
-        }
-        int foget = userService.foget(userName, mail);
-        if (foget==Constants.UNKNOW_ERROR){
-            return RespBean.error("发生了一个未知错误");
-        }else if(foget==Constants.NAME_OR_MAIL_ERROR){
-            return RespBean.error("用户名或邮箱输入错误");
-        }else
-            return RespBean.success("验证码已发送到用户邮箱");
-    }
+        
 
     public RespBean verify(HttpServletRequest req,@PathVariable("username") String username,@PathVariable("verification") String verification){
         if (username==null){

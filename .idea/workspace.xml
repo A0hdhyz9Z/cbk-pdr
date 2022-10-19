@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54180a0d-b677-42b5-a32b-f95d86f1d7cb" name="默认变更列表" comment="check csv" />
+    <list default="true" id="54180a0d-b677-42b5-a32b-f95d86f1d7cb" name="默认变更列表" comment="check csv">
+      <change beforePath="$PROJECT_DIR$/BackEnd/demo/src/main/java/team/cbk/demo/controller/UpDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/demo/src/main/java/team/cbk/demo/controller/UpDataController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +35,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -47,6 +50,7 @@
       <workItem from="1665672533935" duration="1332000" />
       <workItem from="1665929929178" duration="1071000" />
       <workItem from="1666017344278" duration="15000" />
+      <workItem from="1666191845861" duration="316000" />
     </task>
     <task id="LOCAL-00001" summary="check csv">
       <created>1665494930916</created>
@@ -86,7 +90,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="hh" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
