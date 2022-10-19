@@ -12,7 +12,7 @@
       <el-table-column prop="orderAlg" label="算法" sortable width="180"></el-table-column>
       <el-table-column label="操作" width="180" fixed="right">
         <template #default="scope">
-          <el-button size="small" @click="handlePredict(scope.row.id)">预测</el-button>
+          <el-button size="small" @click="handlePredict(scope.row)">预测</el-button>
           <el-button size="small" @click="handleShow(scope.row)">展示</el-button>
         </template>
       </el-table-column>
@@ -25,9 +25,11 @@
         </el-form-item>
         <el-form-item label="选择算法" :label-width="formLabelWidth">
           <el-select v-model="predictForm.alg" placeholder="请选择算法">
-            <el-option label="决策树" value="100"></el-option>
+            <el-option v-for="item in selectAlg" :key="item.id" :value="item.id" :label="item.label">
+            </el-option>
+            <!-- <el-option label="决策树" value="100"></el-option>
             <el-option label="KNN" value="10"></el-option>
-            <el-option label="逻辑回归" value="1"></el-option>
+            <el-option label="逻辑回归" value="1"></el-option> -->
           </el-select>
         </el-form-item>
         <el-form-item label="上传CSV文件" :label-width="formLabelWidth">
@@ -70,7 +72,8 @@ export default {
         id: '',
         alg: '',
       },
-      showId:'',
+      currentRowAlg: '',
+      selectAlg: [],//预测功能算法选择框选项
       tableData: [
         {
           id: 1,
@@ -114,18 +117,27 @@ export default {
       this.uploadFiles = fileList
     },
     //预测按钮点击事件
-    handlePredict(id) {
-      // console.log(id)
-      this.predictForm.id = id
+    handlePredict(row) {
+      this.predictForm.id = row.id
+      this.currentRowAlg = row.orderAlg
+      //预测功能算法选择框选项的限制
+      this.selectAlg = []
+      if (row.orderAlg.indexOf("决策树") != -1) {
+        this.selectAlg.push({ id: 3, label: "决策树" })
+      }
+      if (row.orderAlg.indexOf("KNN") != -1) {
+        this.selectAlg.push({ id: 2, label: "KNN" })
+      }
+      if (row.orderAlg.indexOf("逻辑回归") != -1) {
+        this.selectAlg.push({ id: 1, label: "逻辑回归" })
+      }
       this.predictForm.alg = '' //清空之前的选择
       this.uploadFiles = '' //清空之前的选择
       this.dialogFormVisible = true
     },
     handleShow(row) {
       //console.log(id)
-      //this.showId=id
-      this.$router.push('/Show/'+row.id+'/'+row.orderName+'/'+row.orderDescription+'/'+row.orderDataSet+'/'+row.orderAlg)
-      //this.dialogChartsVisible = true
+      this.$router.push('/Show/' + row.id + '/' + row.orderName + '/' + row.orderDescription + '/' + row.orderDataSet + '/' + row.orderAlg)
     },
 
     //查询历史记录列表
@@ -148,18 +160,18 @@ export default {
               orderName: obj[key].orderName,
               orderDescription: obj[key].orderDescription,
               orderDataSet: '',
-              orderStatus: obj[key].orderStatus,
+              orderStatus: '',
               orderAlg: '',
             }
             //orderDataSet项解析
             if (obj[key].orderData == 0) {
-              data.orderDataSet = "数据集0"
+              data.orderDataSet = "JDT"
             }
             if (obj[key].orderData == 1) {
-              data.orderDataSet = "数据集1"
+              data.orderDataSet = "PDE"
             }
             if (obj[key].orderData == 2) {
-              data.orderDataSet = "数据集2"
+              data.orderDataSet = "Lucene"
             }
             if (obj[key].orderData == 3) {
               data.orderDataSet = "自定义数据集"
@@ -173,6 +185,13 @@ export default {
             }
             if (Math.floor(obj[key].orderAlg % 10) == 1) {
               data.orderAlg += "逻辑回归"
+            }
+            //orderStatus项解析
+            if (obj[key].orderStatus == 0) {
+              data.orderStatus = "预测中"
+            }
+            if (obj[key].orderStatus == 1) {
+              data.orderStatus = "已完成"
             }
             dataArr.push(data)
           }
@@ -202,20 +221,24 @@ export default {
       formData.append('alg', this.predictForm.alg);
       //上传
       predict(formData).then(res => {
+        var msg
+        if (res.obj == 1) {
+          msg = "预测结果为Clean"
+        } else {
+          msg = "预测结果为Buggy"
+        }
         if (res.code == 200) {  //上传成功
-          this.$message({
-            showClose: true,
-            message: res.message,
-            type: 'success'
+          this.$confirm(msg, '预测完成').then(() => {
+            done()
+          }).catch(() => {
           })
 
           //隐藏弹窗
           dialogFormVisible = false
         } else {
-          this.$message({
-            showClose: true,
-            message: res.message,
-            type: 'error'
+          this.$confirm(msg, '预测完成').then(() => {
+            done()
+          }).catch(() => {
           })
         }
       }).catch(err => {

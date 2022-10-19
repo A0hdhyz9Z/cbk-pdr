@@ -3,8 +3,10 @@
         <span style="margin: auto">结 果 图 表 展 示</span>
     </div>
 
-    <el-card class="box-card" style="margin-bottom: 50px;width: 1200px;">
-        <el-form-item :label="'订单编号：'+(route.params.id)" style="width:550px;height: 30px;display: inline-block;">
+    <el-card class="box-card" style="margin:auto;margin-bottom:50px;width: 1200px;">
+        <el-form-item :label="'订单编号：'+(route.params.id)" style="width
+        :550px;height:
+        30px;display: inline-block;">
         </el-form-item>
         <el-form-item :label="'订单名称：'+(route.params.name)" style="width:550px;height: 30px;display: inline-block;">
         </el-form-item>
@@ -168,7 +170,7 @@ function initOption() {
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '15%',
             bottom: '3%',
             containLabel: true
         },
@@ -236,7 +238,7 @@ function initOption() {
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '15%',
             bottom: '3%',
             containLabel: true
         },
@@ -303,7 +305,7 @@ function initOption() {
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '15%',
             bottom: '3%',
             containLabel: true
         },
@@ -370,7 +372,7 @@ function initOption() {
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '15%',
             bottom: '3%',
             containLabel: true
         },

@@ -5,7 +5,7 @@
         <section class="right">
             <div class="index_box">
                 <div class="index_txt">
-                    <img src="src\assets\images\bg.jpg" alt="" />
+                    <img src="src\assets\images\logo.jpg" alt="" />
                     <h1>软件缺陷预测系统</h1>
                     <p>cbk-pdr</p>
                     <div class="zuobiao">

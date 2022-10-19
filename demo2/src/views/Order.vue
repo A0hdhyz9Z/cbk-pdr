@@ -14,18 +14,18 @@
 
         <el-form-item label="选择数据集" class="label">
             <el-radio-group v-model="radio" @change="agreeChange">
-                <el-radio-button label="0">数据集0</el-radio-button>
-                <el-radio-button label="1">数据集1</el-radio-button>
-                <el-radio-button label="2">数据集2</el-radio-button>
+                <el-radio-button label="0">JDT</el-radio-button>
+                <el-radio-button label="1">PDE</el-radio-button>
+                <el-radio-button label="2">Lucene</el-radio-button>
                 <el-radio-button label="3">自定义</el-radio-button>
             </el-radio-group>
         </el-form-item>
 
         <el-form-item v-if=upload_status label="上传数据集" class="label">
-            <el-upload class="upload-demo" ref="upload" :auto-upload="false" :file-list="uploadFiles"
+            <el-upload :disabled="elUploadDisabled" class="upload-demo" ref="upload" :auto-upload="false" :file-list="uploadFiles"
                 :on-change="loadJsonFromFile" accept=".csv">
                 <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-                <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
+                <el-button slot="tip" style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
                 </el-button>
                 <div slot="tip" class="el-upload__tip">只能上传.csv文件，且不超过500kb</div>
             </el-upload>
@@ -63,6 +63,7 @@ export default {
 
             fileLimit: 1,
             uploadFiles: [],//上传后的文件列表
+            elUploadDisabled:false,
             fileType: ["csv"],
             fileSize: 2,
             headers: { "Content-Type": "multipart/form-data; boundary=<calculated when request is sent>" },
@@ -92,6 +93,7 @@ export default {
         },
         submitUpload() {
             console.log("submit")
+            this.elUploadDisabled = true
             this.$message('文件上传中........')
             let file = this.uploadFiles[0].raw;//这里获取上传的文件对象
             console.log(file)

@@ -2,7 +2,8 @@
     <div class="login">
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" label-position="left" label-width="0px"
             class="login-form">
-            <h3 class="title">欢迎使用软件缺陷预测系统</h3>
+            <h5 class="title" id="title1">欢迎使用</h5>
+            <h5 class="title" id="title2">软件缺陷预测系统</h5>
             <el-form-item prop="username">
                 <el-input v-model="loginForm.username" type="text" auto-complete="on" placeholder="请输入用户名"
                     prefix-icon="User">
@@ -21,7 +22,7 @@
                     <PicCode :width="120" :height="40" v-model:Code="Code" />
                 </div>
             </el-form-item>
-            <el-button :loading="loading" size="medium" type="primary" style="width: 40%;margin-top: -10px;"
+            <el-button :loading="loading" size="medium" type="primary" style="width: 40%;margin-top: 0px;"
                 @click.native.prevent="handleLogin">
                 <span v-if="!loading">登 录</span>
                 <span v-else>登 录 中...</span>
@@ -149,10 +150,23 @@ export default {
     background-size: cover;
 }
 
-.title {
-    margin: 0 auto 30px auto;
+#title1 {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    margin-right: 30px;
     text-align: center;
-    color: #707070;
+    color: #2775B6;
+    width: 400px;
+    font-size: 40px;
+}
+
+#title2 {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    text-align: center;
+    color: #115395;
+    width: 400px;
 }
 
 .login-form {
@@ -217,7 +231,7 @@ a {
     width: 40%;
     text-align: center;
     margin-left: 60px;
-    margin-top: -10px;
+    margin-top: 0px;
 }
 
 .reg_btn:hover,
