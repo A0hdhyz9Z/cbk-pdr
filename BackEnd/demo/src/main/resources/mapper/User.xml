@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.cbk.demo.mapper.UserMapper">
+
+
+
+    <select id="findAll" resultType="User">
+        select * from user;
+    </select>
+
+    <select id="selectUserByname" resultType="User">
+        select * from user where userName=#{username};
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+        insert into user values(#{user.userName},#{user.userPassword},#{user.userEmail},#{user.userStatus},#{user.userCode},#{user.userVerification});
+    </insert>
+
+    <select id="selectUserByCode" resultType="User">
+        select * from user where userCode=#{code};
+    </select>
+
+    <update id="updateStatusByUserName" parameterType="String">
+        update user set userStatus = 1 where userName = #{username};
+    </update>
+
+    <update id="updateVerificationByUserName" parameterType="String">
+        update user set userVerification = #{userverification} where userName = #{username};
+    </update>
+
+    <update id="updatePasswordByUserName" parameterType="String">
+        update user set userPassword = #{password} where userName = #{username};
+    </update>
+</mapper>

@@ -3,14 +3,18 @@ package team.cbk.demo.pojo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="Order实体类", description="")
 public class Order implements Serializable {
@@ -44,5 +48,6 @@ public class Order implements Serializable {
     @ApiModelProperty(value = "订单id")
     private Integer orderId;
 
-
+    @ApiModelProperty(value = "订单是否离线训练")
+    private Integer orderOnline;
 }

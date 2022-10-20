@@ -19,10 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkedUser(String username) {
-
-
         User user=userMapper.selectUserByname(username);
-
         if (user != null) {
             return true;
         }

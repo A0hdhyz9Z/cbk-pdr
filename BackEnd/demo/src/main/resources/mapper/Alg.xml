@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.cbk.demo.mapper.AlgMapper">
+    <insert id="insertAlgByOrderIdAndAlgName" parameterType="integer">
+        insert into alg(orderId,algName) values (#{orderId},#{algName});
+    </insert>
+    <insert id="insertAcc" parameterType="double">
+        insert into accuracy values (#{id},#{arr1},#{arr2},#{arr3},#{arr4},#{arr5},#{arr6},#{arr7},#{arr8}
+                                    ,#{arr9},#{arr10},#{orderId})
+    </insert>
+
+    <insert id="insertPre" parameterType="double">
+        insert into precission values (#{id},#{arr1},#{arr2},#{arr3},#{arr4},#{arr5},#{arr6},#{arr7},#{arr8}
+                                    ,#{arr9},#{arr10},#{orderId})
+    </insert>
+
+    <insert id="insertRecall" parameterType="double">
+        insert into recall values (#{id},#{arr1},#{arr2},#{arr3},#{arr4},#{arr5},#{arr6},#{arr7},#{arr8}
+                                      ,#{arr9},#{arr10},#{orderId})
+    </insert>
+
+    <insert id="insertF1" parameterType="double">
+        insert into f1score values (#{id},#{arr1},#{arr2},#{arr3},#{arr4},#{arr5},#{arr6},#{arr7},#{arr8}
+                                      ,#{arr9},#{arr10},#{orderId})
+    </insert>
+</mapper>
