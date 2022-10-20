@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54180a0d-b677-42b5-a32b-f95d86f1d7cb" name="默认变更列表" comment="check csv">
-      <change beforePath="$PROJECT_DIR$/BackEnd/demo/src/main/java/team/cbk/demo/controller/UpDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/demo/src/main/java/team/cbk/demo/controller/UpDataController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +26,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2FsyMhrD48G6Yy2Oq7GVkDnZ8zT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="flattenPackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -32,11 +34,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -50,7 +53,7 @@
       <workItem from="1665672533935" duration="1332000" />
       <workItem from="1665929929178" duration="1071000" />
       <workItem from="1666017344278" duration="15000" />
-      <workItem from="1666191845861" duration="316000" />
+      <workItem from="1666191845861" duration="1966000" />
     </task>
     <task id="LOCAL-00001" summary="check csv">
       <created>1665494930916</created>
@@ -90,7 +93,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="origin/lhq" />
                       </list>
                     </value>
                   </entry>
