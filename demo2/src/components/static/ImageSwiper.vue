@@ -12,7 +12,7 @@
 export default {
 	data() {
 		return {
-			imageList: [{ name: "logistic1.jpg" }, { name: "logistic2.jpg" }],
+			imageList: [{ name: "welcome.jpg" }, { name: "welcome2.jpg" }],
 		};
 	},
 	methods: {

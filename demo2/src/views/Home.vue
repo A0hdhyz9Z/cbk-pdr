@@ -13,23 +13,71 @@
                             <map-location />
                         </el-icon> Beijing Jiaotong University
                     </div>
-                    <div class="menu-%e8%8f%9c%e5%8d%951-container">
-                        <ul id="menu-%e8%8f%9c%e5%8d%951" class="index_nav">
+                    <div class="list">
+                        <ul id="ulist" class="index_nav">
                             <li id="menu-item-1"
                                 class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1">
-                                <router-link to="/login">登录</router-link>
+                                <router-link to="/login">
+                                    <button class="cssbuttons-io-button" id="login_btn1"> 登 录
+                                        <div class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path
+                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                    fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </router-link>
                             </li>
                             <li id="menu-item-2"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2">
-                                <router-link to="/register">注册</router-link>
+                                <router-link to="/register">
+                                    <button class="cssbuttons-io-button_2" id="register_btn1"> 注 册
+                                        <div class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path
+                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                    fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </router-link>
                             </li>
                             <li id="menu-item-3"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3">
-                                <router-link to="/register">关于我们</router-link>
+                                <router-link to="/login">
+                                    <button class="cssbuttons-io-button_2"> 关 于
+                                        <div class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path
+                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                    fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </router-link>
                             </li>
                             <li id="menu-item-4"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4">
-                                <router-link to="/register">联系方式</router-link>
+                                <router-link to="/login">
+                                    <button class="cssbuttons-io-button_2"> 联 系
+                                        <div class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path
+                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                    fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </router-link>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +96,115 @@
     </div>
 </template>
 
-<style>
+<style scoped>
+.cssbuttons-io-button {
+    background: #7072f0;
+    color: white;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 17px;
+    font-weight: 900;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #4f4da6;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
+    margin-top: 30px;
+    width:200px
+}
+
+.cssbuttons-io-button .icon {
+    background: white;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #5452b9;
+    right: 0.3em;
+    transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+    width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: #5452b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+    transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+    transform: scale(0.95);
+}
+
+.cssbuttons-io-button_2 {
+    background: #a1e6ec;
+    color: white;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 17px;
+    font-weight:  900;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #58d8e9;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
+    margin-top: 30px;
+    width:200px;
+}
+
+.cssbuttons-io-button_2 .icon {
+    background: white;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #58d8e9;
+    right: 0.3em;
+    transition: all 0.3s;
+}
+
+.cssbuttons-io-button_2:hover .icon {
+    width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button_2 .icon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: #c7e8eb;
+}
+
+.cssbuttons-io-button_2:hover .icon svg {
+    transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button_2:active .icon {
+    transform: scale(0.95);
+}
+
 .left {
     width: 50%;
 }
@@ -110,6 +266,11 @@ template {
 a {
     background: 0 0;
     color: #000;
+    text-decoration: none;
+}
+
+.router-link-active {
+  text-decoration: none;
 }
 
 a:active,
@@ -321,13 +482,20 @@ ol {
     }
 }
 
+.list{
+    display: flex; /**/
+            justify-content: center; /*水平居中*/
+            align-items: Center; /*垂直居中*/
+    text-align: center;
+}
+
 .index_nav {
     margin-top: 20px;
 }
 
 .index_nav li {
-    display: inline-block;
+    /* display: inline-block; */
     margin: 6px;
-    text-decoration: underline;
+    text-decoration: none;
 }
 </style>

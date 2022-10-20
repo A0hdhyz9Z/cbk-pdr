@@ -11,13 +11,13 @@
 				</span>
 			</header>
 		</article>
-		<el-steps :active="active" finish-status="success">
+		<el-steps :active="active" finish-status="success" style="width: 500px;margin:0 auto" align-center>
 			<el-step title="用户协议"></el-step>
 			<el-step title="注册信息"></el-step>
 		</el-steps>
 
 		<section>
-			<el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm"
+			<el-form ref="ruleForm" :model="ruleForm" :rules="rules" class="demo-ruleForm"
 				autocomplete="off">
 				<div v-if="active == 0">
 					<el-form-item prop="textarea">
@@ -349,10 +349,9 @@ export default {
 }
 </script>
   
-<style  rel="stylesheet/scss" lang="scss">
+<style  rel="stylesheet/scss" lang="scss" scoped>
 .page-register {
 	.header {
-		//border-bottom: 2px solid rgb(235, 232, 232);
 		min-width: 980px;
 		color: #666;
 
@@ -414,11 +413,13 @@ export default {
 	}
 
 	#container {
-		margin: 0px;
+		margin: 0 auto;
 		box-shadow: 0 0 8px #D0D0D0;
 		-webkit-box-shadow: 0 0 8px #D0D0D0;
 		-moz-box-shadow: 0 0 8px #D0D0D0;
 		padding: 20px;
+		
+		
 	}
 }
 </style>

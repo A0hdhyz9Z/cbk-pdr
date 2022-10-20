@@ -5,8 +5,8 @@
             <h5 class="title" id="title1">欢迎使用</h5>
             <h5 class="title" id="title2">软件缺陷预测系统</h5>
             <el-form-item prop="username">
-                <el-input v-model="loginForm.username" type="text" auto-complete="on" placeholder="请输入用户名"
-                    prefix-icon="User">
+                <el-input class="inputPlace" v-model="loginForm.username" type="text" auto-complete="on"
+                    placeholder="请输入用户名" prefix-icon="User">
                 </el-input>
             </el-form-item>
             <el-form-item prop="password" style="margin-top:30px">
@@ -14,31 +14,22 @@
                     prefix-icon="Lock" @keyup.enter.native="handleLogin">
                 </el-input>
             </el-form-item>
-            <el-form-item prop="code">
-                <el-input v-model="loginForm.code" auto-complete="off" placeholder="验证码" style="width: 63%"
+            <el-form-item prop="code" style="margin-top:30px">
+                <el-input class="inputPlace" v-model="loginForm.code" auto-complete="off" placeholder="验证码" style="width: 63%"
                     prefix-icon="Lock" @keyup.enter.native="handleLogin">
                 </el-input>
-                <div class="login-code">
-                    <PicCode :width="120" :height="40" v-model:Code="Code" />
-                </div>
+                <PicCode :width="120" :height="40" v-model:Code="Code" style="margin-top: -30px;margin-left: 3px;" />
             </el-form-item>
-            <el-button :loading="loading" size="medium" type="primary" style="width: 40%;margin-top: 0px;"
-                @click.native.prevent="handleLogin">
+            <button class="login_btn" :loading="loading" size="medium" @click.native.prevent="handleLogin">
                 <span v-if="!loading">登 录</span>
                 <span v-else>登 录 中...</span>
-            </el-button>
+            </button>
             <router-link to="/register">
-                <el-button class="reg_btn" size="medium">
-                    注册</el-button>
+                <button class="reg_btn" size="medium">
+                    注册</button>
             </router-link>
-            <!-- <el-form-item style="width: 100%">
-                <router-link to="/register">注册</router-link>
-            </el-form-item> -->
             <el-form-item style="width: 100%">
                 <router-link to="/forgetPwd">忘记密码？</router-link>
-            </el-form-item>
-            <el-form-item style="width: 100%">
-                <!-- <v-verify ></v-verify> -->
             </el-form-item>
         </el-form>
     </div>
@@ -141,7 +132,7 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss" scoped>
 .login {
     display: flex;
     justify-content: center;
@@ -150,14 +141,24 @@ export default {
     background-size: cover;
 }
 
+.title {
+    display: flex;
+    width: 100%;
+    height: 25px;
+    font-size: 30px;
+    text-align: center;
+    /* 控制元素水平居中， 居左居右分别为left,right */
+    margin-top: 10px;
+}
+
 #title1 {
     margin: 0 auto;
     margin-bottom: 40px;
     margin-right: 30px;
     text-align: center;
     color: #2775B6;
-    width: 400px;
     font-size: 40px;
+
 }
 
 #title2 {
@@ -166,12 +167,11 @@ export default {
     margin-right: 30px;
     text-align: center;
     color: #115395;
-    width: 400px;
 }
 
 .login-form {
     border-radius: 6px;
-    background: #ffffff;
+    // background: #ffffff;
     width: 385px;
     padding: 25px 25px 5px 25px;
 
@@ -193,7 +193,7 @@ export default {
 .login-tip {
     font-size: 13px;
     text-align: center;
-    color: #bfbfbf;
+    // color: #bfbfbf;
 }
 
 .login-code {
@@ -224,21 +224,86 @@ a {
     transition: color 0.3s;
 }
 
-.reg_btn {
-    color: #fff;
-    background-color: rgb(21, 47, 72);
-    border-color: rgb(21, 47, 72);
-    width: 40%;
-    text-align: center;
-    margin-left: 60px;
-    margin-top: 0px;
+
+// 设置el-input_inner
+:deep(.el-input__wrapper) {
+    background-color: rgba(255, 255, 255, 0.247);
 }
 
-.reg_btn:hover,
-.reg_btn:focus {
-    background: var(--el-button-hover-color);
-    border-color: var(--el-button-hover-color);
-    color: var(--el-button-font-color);
+
+
+.login_btn {
+    padding: 1em;
+    width: 45%;
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #1890ff;
+    border: none;
+    border-radius: 45px;
+    -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.login_btn:hover {
+    background-color: #2EE59D;
+    -webkit-box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    -webkit-transform: translateY(-7px);
+    -ms-transform: translateY(-7px);
+    transform: translateY(-7px);
+}
+
+.login_btn:active {
+    -webkit-transform: translateY(-1px);
+    -ms-transform: translateY(-1px);
+    transform: translateY(-1px);
+}
+
+.reg_btn {
+    padding: 1.3em 3em;
+    margin-left: 30px;
+    width: 45%;
+    margin-top: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.reg_btn:hover {
+    background-color: #2EE59D;
+    -webkit-box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    -webkit-transform: translateY(-7px);
+    -ms-transform: translateY(-7px);
+    transform: translateY(-7px);
+}
+
+.reg_btn:active {
+    -webkit-transform: translateY(-1px);
+    -ms-transform: translateY(-1px);
+    transform: translateY(-1px);
 }
 </style>
 

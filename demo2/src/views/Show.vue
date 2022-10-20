@@ -1,21 +1,25 @@
 <template>
-    <div class="title">
-        <span style="margin: auto">结 果 图 表 展 示</span>
+
+    <div class="card2">
+        <div class="title">
+            <span style="margin: auto">结 果 图 表 展 示</span>
+
+        </div>
+        <el-form-item :label="'任务编号：'+(route.params.id)"
+            style="margin-left: 20px ;width:550px;height:30px;display: inline-block;font-weight: 600;">
+        </el-form-item>
+        <el-form-item :label="'任务名称：'+(route.params.name)"
+            style="width:550px;height: 30px;display: inline-block;font-weight: 600;">
+        </el-form-item>
+        <el-form-item :label="'任务描述：'+(route.params.description)"
+            style="margin-left: 20px;width:550px;height: 30px;display: inline-block;font-weight: 600;">
+        </el-form-item>
+        <el-form-item :label="'任务数据集：'+(route.params.dataSet)"
+            style="width:550px;height: 30px;display: inline-block;font-weight: 600;">
+        </el-form-item>
     </div>
 
-    <el-card class="box-card" style="margin:auto;margin-bottom:50px;width: 1200px;">
-        <el-form-item :label="'订单编号：'+(route.params.id)" style="width
-        :550px;height:
-        30px;display: inline-block;">
-        </el-form-item>
-        <el-form-item :label="'订单名称：'+(route.params.name)" style="width:550px;height: 30px;display: inline-block;">
-        </el-form-item>
-        <el-form-item :label="'订单描述：'+(route.params.description)"
-            style="width:550px;height: 30px;display: inline-block;">
-        </el-form-item>
-        <el-form-item :label="'订单数据集：'+(route.params.dataSet)" style="width:550px;height: 30px;display: inline-block;">
-        </el-form-item>
-    </el-card>
+
 
 
     <div>
@@ -26,10 +30,12 @@
         <div id="f1Score" style="width: 550px; height: 280px;float:right;"></div>
     </div>
 
-    <el-form-item :label="'根据不同算法10次评价指标ACC数据的平均值，算法效果最好的是：'+(accWinner)" style="width:550px;float:left;">
+    <el-form-item :label="'根据不同算法10次评价指标ACC数据的平均值，算法效果最好的是：'+(accWinner)"
+        style="width:550px;float:left;font-weight: 600;">
     </el-form-item>
 
-    <el-form-item :label="'根据不同算法10次评价指标f1Score数据的平均值，算法效果最好的是：'+(f1ScoreWinner)" style="width:550px;float:right;">
+    <el-form-item :label="'根据不同算法10次评价指标f1Score数据的平均值，算法效果最好的是：'+(f1ScoreWinner)"
+        style="width:550px;float:right;font-weight: 600;">
     </el-form-item>
 
 
@@ -41,16 +47,18 @@
         <div id="recall" style="width: 550px; height: 280px;float:right;margin-top: 30px;"></div>
     </div>
 
-    <el-form-item :label="'根据不同算法10次评价指标precision数据的平均值，算法效果最好的是：'+(precisionWinner)" style="width:550px;float:left;">
+    <el-form-item :label="'根据不同算法10次评价指标precision数据的平均值，算法效果最好的是：'+(precisionWinner)"
+        style="width:550px;float:left;font-weight: 600;">
     </el-form-item>
 
-    <el-form-item :label="'根据不同算法10次评价指标recall数据的平均值，算法效果最好的是：'+(recallWinner)" style="width:550px;float:right;">
+    <el-form-item :label="'根据不同算法10次评价指标recall数据的平均值，算法效果最好的是：'+(recallWinner)"
+        style="width:550px;float:right;font-weight: 600;">
     </el-form-item>
 
 
-    <el-card class="box-card" style="margin-bottom: 50px;width: 1000px;margin: auto;font-size: 20px;">
+    <el-card class="card" style="margin-bottom: 50px;width: 1000px;margin: auto;font-size: 20px;">
         <el-form-item :label="'综上，根据不同算法四种评价指标的平均值，算法效果最好的是：'+(finalWinner)"
-            style="width:700px;height: 30px;margin: auto;">
+            style="width:700px;height: 30px;margin: auto;font-weight: 600;">
         </el-form-item>
     </el-card>
 
@@ -163,7 +171,10 @@ function initOption() {
     //acc图表配置
     accOption = {
         title: {
-            text: 'ACC'
+            text: 'ACC',
+            textStyle: {
+                fontSize: 25
+            },
         },
         tooltip: {
             trigger: 'axis'
@@ -180,14 +191,19 @@ function initOption() {
             }
         },
         legend: {
-            data: algLabel
+            data: algLabel,
+            textStyle: {
+                fontSize: 18
+            },
         },
         xAxis: {
             name: "样本序号",
-            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
         },
         yAxis: {},
-        series: accSeriesData
+        series: accSeriesData, textStyle: {
+            fontSize: 16
+        },
     }
 
     //f1Score数据
@@ -231,7 +247,9 @@ function initOption() {
     //f1Score图表配置
     f1ScoreOption = {
         title: {
-            text: 'f1Score'
+            text: 'f1Score', textStyle: {
+                fontSize: 16
+            },
         },
         tooltip: {
             trigger: 'axis'
@@ -248,14 +266,18 @@ function initOption() {
             }
         },
         legend: {
-            data: algLabel
+            data: algLabel, textStyle: {
+                fontSize: 16
+            },
         },
         xAxis: {
             name: "样本序号",
             data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
         },
         yAxis: {},
-        series: f1ScoreSeriesData
+        series: f1ScoreSeriesData, textStyle: {
+            fontSize: 16
+        },
     }
 
     //precision数据
@@ -298,7 +320,9 @@ function initOption() {
     //precision图表配置
     precisionOption = {
         title: {
-            text: 'precision'
+            text: 'precision', textStyle: {
+                fontSize: 16
+            },
         },
         tooltip: {
             trigger: 'axis'
@@ -315,14 +339,18 @@ function initOption() {
             }
         },
         legend: {
-            data: algLabel
+            data: algLabel, textStyle: {
+                fontSize: 16
+            },
         },
         xAxis: {
             name: "样本序号",
             data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
         },
         yAxis: {},
-        series: precisionSeriesData
+        series: precisionSeriesData, textStyle: {
+            fontSize: 16
+        },
     }
 
     //recall数据
@@ -365,7 +393,9 @@ function initOption() {
     //recall图表配置
     recallOption = {
         title: {
-            text: 'recall'
+            text: 'recall', textStyle: {
+                fontSize: 16
+            },
         },
         tooltip: {
             trigger: 'axis'
@@ -382,14 +412,18 @@ function initOption() {
             }
         },
         legend: {
-            data: algLabel
+            data: algLabel, textStyle: {
+                fontSize: 16
+            },
         },
         xAxis: {
             name: "样本序号",
             data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
         },
         yAxis: {},
-        series: recallSeriesData
+        series: recallSeriesData, textStyle: {
+            fontSize: 16
+        },
     }
 
     //进行均值的比较
@@ -444,7 +478,7 @@ onMounted(async () => {
 
 </script>
 
-<style>
+<style scoped>
 .title {
     color: #1b3366;
     display: flex;
@@ -452,7 +486,55 @@ onMounted(async () => {
     height: 25px;
     font-size: 30px;
     text-align: center;
+    font-weight: bold;
     /* 控制元素水平居中， 居左居右分别为left,right */
     margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.card2 {
+    margin: auto;
+    margin-bottom: 50px;
+    width: 1200px;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    transition: all .2s;
+}
+
+.card2:hover {
+    transform: scale(0.96);
+    border-radius: 20px;
+}
+
+/* From www.lingdaima.com */
+.card {
+    width: 190px;
+    background: rgb(255, 255, 255);
+    border-radius: 0.4em;
+    box-shadow: 0.3em 0.3em 0.7em #00000015;
+    transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: rgb(250, 250, 250) 0.2em solid;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.card:hover {
+    border: #006fff 0.2em solid;
+
+
 }
 </style>
