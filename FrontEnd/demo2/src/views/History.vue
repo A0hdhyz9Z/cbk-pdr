@@ -1,26 +1,29 @@
 <template>
-  <div>
-    <el-table :data="tableData" height="600" stripe style="width: 100%;margin-bottom: 20px;" row-key="id" border
-      default-expand-all :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+  <div class="selectTitle">
+    <span style="margin: auto">历 史 任 务</span>
+  </div>
+  <div class="tbc">
+    <el-table :data="tableData" height="62vh" stripe="false" style="width: 100%;margin-bottom: 20px;" row-key="id"
+      border default-expand-all :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
       <el-table-column prop="id" label="ID" v-if="false"></el-table-column>
       <el-table-column type="index" label="序号" :index="indexMethod" width="50"> </el-table-column>
-      <el-table-column prop="orderTime" label="订单提交时间" sortable width="140"></el-table-column>
-      <el-table-column prop="orderName" label="订单名称" sortable width="120"></el-table-column>
-      <el-table-column prop="orderDescription" label="订单描述" width=""></el-table-column>
+      <el-table-column prop="orderTime" label="任务提交时间" sortable width="140"></el-table-column>
+      <el-table-column prop="orderName" label="任务名称" sortable width="120"></el-table-column>
+      <el-table-column prop="orderDescription" label="任务描述" width=""></el-table-column>
       <el-table-column prop="orderDataSet" label="模型训练所用数据集" sortable width="180"></el-table-column>
-      <el-table-column prop="orderStatus" label="订单状态" sortable width="120"></el-table-column>
+      <el-table-column prop="orderStatus" label="任务状态" sortable width="120"></el-table-column>
       <el-table-column prop="orderAlg" label="算法" sortable width="180"></el-table-column>
-      <el-table-column label="操作" width="180" fixed="right">
+      <el-table-column label="操作" width="200" fixed="right">
         <template #default="scope">
-          <el-button size="small" @click="handlePredict(scope.row)">预测</el-button>
-          <el-button size="small" @click="handleShow(scope.row)">展示</el-button>
+          <el-button class="per_btn" size="small" @click="handlePredict(scope.row)">预测</el-button>
+          <el-button class="show_btn" size="small" @click="handleShow(scope.row)">展示</el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <el-dialog title="预测" v-model="dialogFormVisible">
       <el-form :model="predictForm">
-        <el-form-item label="订单编号" :label-width="formLabelWidth">
+        <el-form-item label="任务编号" :label-width="formLabelWidth">
           <p>{{predictForm.id}}</p>
         </el-form-item>
         <el-form-item label="选择算法" :label-width="formLabelWidth">
@@ -49,7 +52,7 @@
     </el-dialog>
 
     <el-dialog title="结果图表展示" v-model="dialogChartsVisible">
-      <p>订单编号：{{showId}}</p>
+      <p>任务编号：{{showId}}</p>
     </el-dialog>
   </div>
 </template>
@@ -254,3 +257,123 @@ export default {
 }
 </script>
   
+<style lang="scss" scoped>
+.selectTitle {
+  color: #1b3366;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  font-size: 35px;
+  text-align: center;
+  /* 控制元素水平居中， 居左居右分别为left,right */
+  margin-top: -15px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.tbc {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.per_btn {
+ font-size: 10px;
+ letter-spacing: 2px;
+ text-transform: uppercase;
+ display: inline-block;
+ text-align: center;
+ font-weight: bold;
+ padding: 0em 2em;
+ border: 3px solid #2f90b9;
+ border-radius: 2px;
+ position: relative;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+ color: #2f90b9;
+ text-decoration: none;
+ transition: 0.3s ease all;
+ z-index: 1;
+}
+
+.per_btn:before {
+ transition: 0.5s all ease;
+ position: absolute;
+ top: 0;
+ left: 50%;
+ right: 50%;
+ bottom: 0;
+ opacity: 0;
+ content: '';
+ background-color: #2f90b9;
+ z-index: -1;
+}
+
+.per_btn:hover, .per_btn:focus {
+ color: white;
+}
+
+.per_btn:hover:before, .per_btn:focus:before {
+ transition: 0.5s all ease;
+ left: 0;
+ right: 0;
+ opacity: 1;
+}
+
+.per_btn:active {
+ transform: scale(0.9);
+}
+
+.show_btn {
+ font-size: 10px;
+ letter-spacing: 2px;
+ text-transform: uppercase;
+ display: inline-block;
+ text-align: center;
+ font-weight: bold;
+ padding: 0em 2em;
+ border: 3px solid #f07c82;
+ border-radius: 2px;
+ position: relative;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+ color: #f07c82;
+ text-decoration: none;
+ transition: 0.3s ease all;
+ z-index: 1;
+}
+
+.show_btn:before {
+ transition: 0.5s all ease;
+ position: absolute;
+ top: 0;
+ left: 50%;
+ right: 50%;
+ bottom: 0;
+ opacity: 0;
+ content: '';
+ background-color: #f07c82;
+ z-index: -1;
+}
+
+.show_btn:hover, .show_btn:focus {
+ color: white;
+}
+
+.show_btn:hover:before, .show_btn:focus:before {
+ transition: 0.5s all ease;
+ left: 0;
+ right: 0;
+ opacity: 1;
+}
+
+.show_btn:active {
+ transform: scale(0.9);
+}
+
+</style>

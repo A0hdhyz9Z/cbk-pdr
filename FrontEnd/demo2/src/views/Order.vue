@@ -1,15 +1,15 @@
 <template >
     <div class="selectTitle">
-        <span style="margin: auto">预 测 订 单</span>
+        <span style="margin: auto">提 交 预 测 任 务</span>
     </div>
     <div class="orderSelect">
-        <el-form-item label="订单名称" class="label">
-            <el-input v-model="orderForm.orderName" style="width:300px" placeholder="请输入订单名称" />
+        <el-form-item label="任务名称" class="label">
+            <el-input v-model="orderForm.orderName" style="width:300px" placeholder="请输入任务名称" />
         </el-form-item>
 
-        <el-form-item label="订单描述" class="label">
+        <el-form-item label="任务描述" class="label">
             <el-input v-model="orderForm.orderDescription" style="width:300px;" type="textarea" clearable
-                :autosize="{ minRows: 10, maxRows: 20}" maxlength="1000" placeholder="请输入订单描述" />
+                :autosize="{ minRows: 10, maxRows: 20}" maxlength="1000" placeholder="请输入任务描述" />
         </el-form-item>
 
         <el-form-item label="选择数据集" class="label">
@@ -22,10 +22,11 @@
         </el-form-item>
 
         <el-form-item v-if=upload_status label="上传数据集" class="label">
-            <el-upload :disabled="elUploadDisabled" class="upload-demo" ref="upload" :auto-upload="false" :file-list="uploadFiles"
-                :on-change="loadJsonFromFile" accept=".csv">
+            <el-upload :disabled="elUploadDisabled" class="upload-demo" ref="upload" :auto-upload="false"
+                :file-list="uploadFiles" :on-change="loadJsonFromFile" accept=".csv">
                 <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-                <el-button slot="tip" style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
+                <el-button slot="tip" style="margin-left: 10px;" size="small" type="success" @click="submitUpload">
+                    上传到服务器
                 </el-button>
                 <div slot="tip" class="el-upload__tip">只能上传.csv文件，且不超过500kb</div>
             </el-upload>
@@ -38,12 +39,25 @@
         </el-form-item>
 
         <el-form-item class="submit_btn">
-            <el-button :loading="loading" size="large" type="success" icon="Check" round
+            <!-- <el-button :loading="loading" size="large" type="success" icon="Check" round
                 style="width: 100% ;margin-left: 150px;margin-right: 150px;font-size: 20px;"
                 @click.prevent="handleOrder">
-                <span v-if="!loading">提 交 订 单</span>
-                <span v-else>订 单 提 交 中...</span>
-            </el-button>
+                <span v-if="!loading">提 交 任 务</span>
+                <span v-else>任 务 提 交 中...</span>
+            </el-button> -->
+            <button class="submit_btn123" @click.prevent="handleOrder">
+                <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path fill="currentColor"
+                                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <span>提交任务</span>
+            </button>
         </el-form-item>
     </div>
 </template>
@@ -63,7 +77,7 @@ export default {
 
             fileLimit: 1,
             uploadFiles: [],//上传后的文件列表
-            elUploadDisabled:false,
+            elUploadDisabled: false,
             fileType: ["csv"],
             fileSize: 2,
             headers: { "Content-Type": "multipart/form-data; boundary=<calculated when request is sent>" },
@@ -75,8 +89,8 @@ export default {
                 { label: "逻辑回归", key: 1 },
             ],
             orderForm: {
-                orderName: "Default",
-                orderDescription: "Default",
+                orderName: "",
+                orderDescription: "",
                 orderDataset: 1,
                 orderAlg: [],
             },
@@ -153,22 +167,43 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" lang="scss" scoped>
 .orderSelect {
     margin: 0px auto;
+
+    background-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(11px);
+    -webkit-backdrop-filter: blur(11px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    color: rgb(255, 255, 255);
 }
 
 .label {
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 60px;
     margin-top: 10px;
+    font-weight: bold;
 }
 
-.submit_btn {
-    width: 100%;
+:deep(.el-input__wrapper) {
+    background-color: rgba(255, 255, 255, 0.247);
 }
 
-/* 预测订单 */
+:deep(.el-textarea__inner) {
+    background-color: rgba(255, 255, 255, 0.247);
+}
+
+:deep(.el-radio-button__inner) {
+    background-color: rgba(255, 255, 255, 0.247);
+}
+
+
+
+/* 预测任务 */
 .selectTitle {
     color: #1b3366;
     display: flex;
@@ -177,6 +212,62 @@ export default {
     font-size: 35px;
     text-align: center;
     /* 控制元素水平居中， 居左居右分别为left,right */
-    margin-top: 10px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.submit_btn123 {
+    margin-left: 60px;
+    font-family: inherit;
+    font-size: 20px;
+    background: royalblue;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.submit_btn123 span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+.submit_btn123 svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.submit_btn123:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.submit_btn123:hover svg {
+    transform: translateX(2.1em) rotate(45deg) scale(1.1);
+}
+
+.submit_btn123:hover span {
+    transform: translateX(6em);
+}
+
+.submit_btn123:active {
+    transform: scale(0.75);
+}
+
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.25em);
+    }
+
+    to {
+        transform: translateY(-0.25em);
+    }
 }
 </style>
